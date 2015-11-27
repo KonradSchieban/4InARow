@@ -15,10 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     gameBoard.cpp \
-    player.cpp
+    player.cpp \
+    computerPlayer.cpp \
+    humanPlayer.cpp
 
 HEADERS  += mainwindow.h \
     gameBoard.h \
-    player.h
+    player.h \
+    computerPlayer.h \
+    humanPlayer.h \
+    util/utilities.h
 
 FORMS    += mainwindow.ui
