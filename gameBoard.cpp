@@ -43,3 +43,14 @@ gameBoard::gameBoard(){
 	}
 
 }
+
+gameBoard::~gameBoard(){
+
+    for(int y = 0; y < sizeY; y++){
+
+        delete board[y];
+    }
+
+    delete[] board;
+
+}

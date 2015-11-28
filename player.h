@@ -21,8 +21,12 @@ class player{
 
 	public:
 
+        //Constructor
         player(int playerNumber);
 		
+        //Destructor
+        ~player();
+
         void setScene(QGraphicsScene *sceneInit, int grWidth, int grHeight);
 
         virtual int move(gameBoard* G, int col) = 0;

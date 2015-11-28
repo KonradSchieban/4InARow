@@ -16,9 +16,14 @@ class gameBoard{
 		//Constructor
 		gameBoard();
 
+        //Destructor
+        ~gameBoard();
+
 		//Member Functions:
-		int getSizeX(){return sizeX;};
-		int getSizeY(){return sizeY;};
+        int getSizeX(){return sizeX;}
+        int getSizeY(){return sizeY;}
+
+        //Prints the gameBoard in ASCII on the console
 		void print();
 
 };

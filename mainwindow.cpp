@@ -9,14 +9,15 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),P1(1),P2(2)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     G.print();
 
-    enabled = true;
-    turn = 1;
+    //disable game mode since no players are chose yet
+    enabled = false;
+
     ui->statusField->setText("Player 1's turn");
 
     scene = new QGraphicsScene();
@@ -33,8 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     graphicsRightBorder = graphicsGeometry.width()*0.95;
 
     scene->setSceneRect(0,0,graphicsWidth,graphicsHeight);
-    P1.setScene(scene,graphicsWidth,graphicsHeight);
-    P2.setScene(scene,graphicsWidth,graphicsHeight);
 
     QPen blackPen(Qt::black);
 
@@ -62,7 +61,7 @@ int MainWindow::moveUI(int col)
 
     if(turn == 1){
 
-        moveResult = P1.move(&G,col);
+        moveResult = P1->move(&G,col);
 
         if(moveResult == 0){ //check if move was invalid because column full
             winner = 0;
@@ -75,7 +74,7 @@ int MainWindow::moveUI(int col)
 
     }else{
 
-        moveResult = P2.move(&G,col);
+        moveResult = P2->move(&G,col);
 
         if(moveResult == 0){ //check if move was invalid because column full
             winner = 0;
@@ -150,4 +149,24 @@ void MainWindow::mousePressEvent(QMouseEvent *ev){
             cout<<"Winner:"<<moveUI(col)<<endl;
     }
 
+
+
+}
+
+
+void MainWindow::on_startButton_clicked()
+{
+
+    if(ui->radioButtonC1->isChecked()
+    P1 = new humanPlayer(1);
+    P2 = new humanPlayer(2);
+
+    P1->setScene(scene,graphicsWidth,graphicsHeight);
+    P2->setScene(scene,graphicsWidth,graphicsHeight);
+
+    //enable game mode
+    enabled = true;
+
+    //Player 1 is starting the game
+    turn = 1;
 }

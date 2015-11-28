@@ -29,8 +29,8 @@ public:
 
     gameBoard G;
 
-    humanPlayer P1;
-    humanPlayer P2;
+    player* P1;
+    player* P2;
 
     QGraphicsScene *scene;
 
@@ -45,6 +45,8 @@ public:
 private slots:
 
     void mousePressEvent(QMouseEvent *ev);
+
+    void on_startButton_clicked();
 
 private:
     Ui::MainWindow *ui;

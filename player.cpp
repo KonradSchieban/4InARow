@@ -16,6 +16,11 @@ player::player(int playerNumber){
     blackPen = new QPen(Qt::black);
 }
 
+player::~player(){
+    delete brush;
+    delete blackPen;
+}
+
 void player::setScene(QGraphicsScene *sceneInit, int grWidth, int grHeight){
 
     scene = sceneInit;
@@ -74,6 +79,8 @@ bool player::checkWon(int x0, int y0, gameBoard* G){
 
         if(G->board[y][x] == this-> number){
             inARow++;
+        }else{
+            break;
         }
 
         x--;
@@ -88,6 +95,8 @@ bool player::checkWon(int x0, int y0, gameBoard* G){
 
         if(G->board[y][x] == this-> number){
             inARow++;
+        }else{
+            break;
         }
 
         x++;
@@ -111,6 +120,8 @@ bool player::checkWon(int x0, int y0, gameBoard* G){
 
         if(G->board[y][x] == this-> number){
             inARow++;
+        }else{
+            break;
         }
 
         x++;
@@ -125,6 +136,8 @@ bool player::checkWon(int x0, int y0, gameBoard* G){
 
         if(G->board[y][x] == this-> number){
             inARow++;
+        }else{
+            break;
         }
 
         x--;
