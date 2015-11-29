@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
+    <width>564</width>
     <height>488</height>
    </rect>
   </property>
@@ -65,8 +65,8 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>260</y>
-      <width>99</width>
+      <y>250</y>
+      <width>81</width>
       <height>27</height>
      </rect>
     </property>
@@ -158,13 +158,26 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="CloseButton">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>290</y>
+      <width>81</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Close</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>596</width>
+     <width>564</width>
      <height>25</height>
     </rect>
    </property>

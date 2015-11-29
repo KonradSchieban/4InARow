@@ -112,8 +112,6 @@ void MainWindow::statusOutput(int winner)
     case 1:
         ui->statusField->setText("Player 1 won");
         ui->statusField->setStyleSheet("QTextEdit {background-color:red}");
-        //scene->clear();
-        //ui->graphicsView->viewport()->update();
         break;
     case 2:
         ui->statusField->setText("Player 2 won");
@@ -129,6 +127,7 @@ void MainWindow::statusOutput(int winner)
     if(winner > 0){
         enabled = false;
         ui->startButton->setText("Play again?");
+        ui->startButton->setEnabled(true);
     }
 
 }
@@ -154,8 +153,6 @@ void MainWindow::mousePressEvent(QMouseEvent *ev){
         if(col >= 0 && col < 7)
             cout<<"Winner:"<<moveUI(col)<<endl;
     }
-
-
 
 }
 
@@ -183,9 +180,35 @@ void MainWindow::on_startButton_clicked()
     P1->setScene(scene,graphicsWidth,graphicsHeight);
     P2->setScene(scene,graphicsWidth,graphicsHeight);
 
+    //Clear board and paint grid again
+    scene->clear();
+    ui->graphicsView->viewport()->update();
+
+    QPen blackPen(Qt::black);
+
+    for(int i = 0; i <= 7; i++){
+        scene->addLine(i*graphicsWidth/7.0,0,i*graphicsWidth/7.0,graphicsHeight,blackPen);
+        scene->addLine(0,i*graphicsHeight/7.0,graphicsWidth,i*graphicsHeight/7.0,blackPen);
+    }
+
+    //clear gameBoard
+    G.clear();
+
     //enable game mode
     enabled = true;
 
     //Player 1 is starting the game
     turn = 1;
+
+    //reset status field and disable start button
+    ui->startButton->setEnabled(false);
+    ui->statusField->setText("Player 1's turn");
+    ui->statusField->setStyleSheet("QTextEdit {background-color:white}");
+
+
+}
+
+void MainWindow::on_CloseButton_clicked()
+{
+    this->close();
 }
