@@ -26,6 +26,9 @@ class gameBoard{
         //Prints the gameBoard in ASCII on the console
 		void print();
 
+        //clears gameBoard: deletes all tokens from the board
+        void clear();
+
 };
 
 

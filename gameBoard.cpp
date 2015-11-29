@@ -54,3 +54,13 @@ gameBoard::~gameBoard(){
     delete[] board;
 
 }
+
+void gameBoard::clear(){
+
+    for(int y = 0; y < sizeY; y++){
+        for(int x = 0; x < sizeX; x++){
+            board[y][x] = 0;
+        }
+    }
+
+}

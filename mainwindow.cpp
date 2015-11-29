@@ -112,19 +112,25 @@ void MainWindow::statusOutput(int winner)
     case 1:
         ui->statusField->setText("Player 1 won");
         ui->statusField->setStyleSheet("QTextEdit {background-color:red}");
-        enabled = false;
+        //scene->clear();
+        //ui->graphicsView->viewport()->update();
         break;
     case 2:
         ui->statusField->setText("Player 2 won");
         ui->statusField->setStyleSheet("QTextEdit {background-color:blue}");
-        enabled = false;
         break;
     case 3:
         ui->statusField->setText("The game is tied!");
         ui->statusField->setStyleSheet("QTextEdit {background-color:green}");
-        enabled = false;
         break;
     }
+
+    //check if game is over and in case, make start button a "Play Again" button
+    if(winner > 0){
+        enabled = false;
+        ui->startButton->setText("Play again?");
+    }
+
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *ev){
@@ -157,10 +163,23 @@ void MainWindow::mousePressEvent(QMouseEvent *ev){
 void MainWindow::on_startButton_clicked()
 {
 
-    if(ui->radioButtonC1->isChecked()
-    P1 = new humanPlayer(1);
-    P2 = new humanPlayer(2);
+    //create first player dependant on which radio button has been checked
+    if(ui->radioButtonH1->isChecked())
+        P1 = new humanPlayer(1);
+    else if(ui->radioButtonC1->isChecked())
+        P1 = new computerPlayer(1);
+    else
+        return;
 
+    //create second player dependant on which radio button has been checked
+    if(ui->radioButtonH2->isChecked())
+        P2 = new humanPlayer(2);
+    else if(ui->radioButtonC2->isChecked())
+        P2 = new computerPlayer(2);
+    else
+        return;
+
+    //initialize players with scene object and frame metrics
     P1->setScene(scene,graphicsWidth,graphicsHeight);
     P2->setScene(scene,graphicsWidth,graphicsHeight);
 
