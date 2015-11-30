@@ -32,14 +32,21 @@ public:
     player* P1;
     player* P2;
 
+    //main scene
     QGraphicsScene *scene;
 
+    //scene which dislays token for next turn
+    QGraphicsScene *nextTurnScene;
+
+    //boolean value which indicates if gameboard is enabled
     bool enabled;
 
     int graphicsWidth;
     int graphicsHeight;
     int graphicsLeftBorder;
     int graphicsRightBorder;
+
+    // 1 for player 1, 2 for player 2
     int turn;
 
 private slots:
@@ -65,6 +72,10 @@ private:
     void statusOutput(int winner);
     /* Updates the winner in the Status Field "statusField"
      */
+
+    void updateNextTurnScene(QBrush brush);
+    /* Updates next turn field with QBrush of a certain color
+     */
 };
 
-#endif // MAINWINDOW_H
+#endif MAINWINDOW_H

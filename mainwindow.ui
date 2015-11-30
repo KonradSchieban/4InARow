@@ -64,8 +64,8 @@
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>250</y>
+      <x>390</x>
+      <y>240</y>
       <width>81</width>
       <height>27</height>
      </rect>
@@ -78,7 +78,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>60</y>
+      <y>50</y>
       <width>181</width>
       <height>91</height>
      </rect>
@@ -120,7 +120,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>150</y>
+      <y>140</y>
       <width>171</width>
       <height>101</height>
      </rect>
@@ -161,14 +161,24 @@
    <widget class="QPushButton" name="CloseButton">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>290</y>
+      <x>390</x>
+      <y>280</y>
       <width>81</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
      <string>Close</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="nextTurnGraphicsView">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>320</y>
+      <width>91</width>
+      <height>81</height>
+     </rect>
     </property>
    </widget>
   </widget>

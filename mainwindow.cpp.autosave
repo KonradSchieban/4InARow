@@ -49,8 +49,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //Create scene for token for next turn
     nextTurnScene = new QGraphicsScene();
     ui->nextTurnGraphicsView->setScene(nextTurnScene);
-    QBrush* brush = new QBrush(Qt::red);
-    nextTurnScene->addEllipse(0,0,graphicsWidth/G.getSizeX(),graphicsHeight/G.getSizeY(),blackPen,*brush);
 
 }
 
