@@ -60,7 +60,7 @@ int computerPlayer::move(gameBoard* G, int col){
 	G->board[height][bestCol] = this->number;
 
     //paint stone on scene
-    scene->addEllipse(bestCol*43,140-height*35,40,40,*blackPen,*brush);
+    scene->addEllipse(bestCol*graphicsWidth/sizeX,graphicsHeight-(height+1)*graphicsHeight/sizeY,graphicsWidth/sizeX,graphicsHeight/sizeY,*blackPen,*brush);
 
 	if(this->checkWon(bestCol, height, G))
 		return 2;

@@ -35,8 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene->setSceneRect(0,0,graphicsWidth,graphicsHeight);
 
-    QPen blackPen(Qt::black);
+    //Create blackPen Object
+    blackPen = QPen(Qt::black);
 
+    //Draw grid for game board
     for(int i = 0; i <= 7; i++){
         scene->addLine(i*graphicsWidth/7.0,0,i*graphicsWidth/7.0,graphicsHeight,blackPen);
         scene->addLine(0,i*graphicsHeight/7.0,graphicsWidth,i*graphicsHeight/7.0,blackPen);
@@ -49,8 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //Create scene for token for next turn
     nextTurnScene = new QGraphicsScene();
     ui->nextTurnGraphicsView->setScene(nextTurnScene);
-    QBrush* brush = new QBrush(Qt::red);
-    nextTurnScene->addEllipse(0,0,graphicsWidth/G.getSizeX(),graphicsHeight/G.getSizeY(),blackPen,*brush);
 
 }
 
@@ -78,6 +78,9 @@ int MainWindow::moveUI(int col)
 
         turn = 2;
 
+        //update "next turn scene"
+        updateNextTurnScene(P2->getQBrush());
+
     }else{
 
         moveResult = P2->move(&G,col);
@@ -90,6 +93,8 @@ int MainWindow::moveUI(int col)
         }
 
         turn = 1;
+        //update "next turn scene"
+        updateNextTurnScene(P1->getQBrush());
 
     }
 
@@ -200,17 +205,34 @@ void MainWindow::on_startButton_clicked()
     //clear gameBoard
     G.clear();
 
+    //reset status field and disable start button
+    ui->startButton->setEnabled(false);
+    ui->statusField->setText("Player 1's turn");
+    ui->statusField->setStyleSheet("QTextEdit {background-color:white}");
+
     //enable game mode
     enabled = true;
 
     //Player 1 is starting the game
     turn = 1;
 
-    //reset status field and disable start button
-    ui->startButton->setEnabled(false);
-    ui->statusField->setText("Player 1's turn");
-    ui->statusField->setStyleSheet("QTextEdit {background-color:white}");
+    //if Player 1 is computerPlayer, let him Move
+    if(dynamic_cast<computerPlayer*>(P1))
+    {
+        cout<<"P1 is computerPlayer"<<endl;
+        moveUI(1);
+    }
 
+    //update "next turn scene"
+    updateNextTurnScene(P1->getQBrush());
+
+}
+
+void MainWindow::updateNextTurnScene(QBrush* brush)
+{
+    int sizeX = G.getSizeX();
+    int sizeY = G.getSizeY();
+    nextTurnScene->addEllipse(0,0,graphicsWidth/sizeX,graphicsHeight/sizeY,blackPen,*brush);
 }
 
 void MainWindow::on_CloseButton_clicked()

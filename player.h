@@ -27,6 +27,7 @@ class player{
         //Destructor
         ~player();
 
+        //Function to initialize Player for scene on which he draws tokens
         void setScene(QGraphicsScene *sceneInit, int grWidth, int grHeight);
 
         virtual int move(gameBoard* G, int col) = 0;
@@ -36,6 +37,9 @@ class player{
 			2 if player won
             3 if game is tied
 		*/
+
+        QBrush* getQBrush(){return brush;}
+        QPen* getQPen(){return blackPen;}
 
 };
 

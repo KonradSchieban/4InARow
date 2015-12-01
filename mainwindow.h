@@ -38,6 +38,9 @@ public:
     //scene which dislays token for next turn
     QGraphicsScene *nextTurnScene;
 
+    //Pen to draw lines
+    QPen blackPen;
+
     //boolean value which indicates if gameboard is enabled
     bool enabled;
 
@@ -73,7 +76,7 @@ private:
     /* Updates the winner in the Status Field "statusField"
      */
 
-    void updateNextTurnScene(QBrush brush);
+    void updateNextTurnScene(QBrush* brush);
     /* Updates next turn field with QBrush of a certain color
      */
 };
