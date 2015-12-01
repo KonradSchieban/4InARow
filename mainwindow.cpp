@@ -1,10 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QString>
+#include<QString>
 #include<QScrollBar>
 #include<QPoint>
 #include<QPalette>
 #include<iostream>
+#include<unistd.h>
+#include<ctime>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -145,6 +148,8 @@ void MainWindow::statusOutput(int winner)
 
 void MainWindow::mousePressEvent(QMouseEvent *ev){
 
+    int winner = -1; //not yet needed: will be overwritten by return value of moveUI()
+
     if(enabled)
     {
         int sizeX = G.getSizeX();
@@ -162,7 +167,16 @@ void MainWindow::mousePressEvent(QMouseEvent *ev){
         int col = (1.0*posInFrame)/graphicsWidth*sizeX;
 
         if(col >= 0 && col < 7)
-            cout<<"Winner:"<<moveUI(col)<<endl;
+            winner = moveUI(col);
+
+
+        //Check if computerPlayer has to make next move:
+        if(winner == 0)
+        {
+            if(turn == 1 && dynamic_cast<computerPlayer*>(P1) || turn == 2 && dynamic_cast<computerPlayer*>(P2)){
+                moveUI(-1);
+            }
+        }
     }
 
 }
@@ -216,15 +230,14 @@ void MainWindow::on_startButton_clicked()
     //Player 1 is starting the game
     turn = 1;
 
-    //if Player 1 is computerPlayer, let him Move
-    if(dynamic_cast<computerPlayer*>(P1))
-    {
-        cout<<"P1 is computerPlayer"<<endl;
-        moveUI(1);
-    }
-
     //update "next turn scene"
     updateNextTurnScene(P1->getQBrush());
+
+    //if Player 1 is computerPlayer, let him move
+    if(dynamic_cast<computerPlayer*>(P1))
+    {
+        moveUI(-1);
+    }
 
 }
 
