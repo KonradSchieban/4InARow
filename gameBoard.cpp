@@ -3,6 +3,28 @@
 
 using namespace std;
 
+//Copy Constructor
+gameBoard::gameBoard(const gameBoard &G){
+
+    sizeX = G.getSizeX();
+    sizeY = G.getSizeY();
+
+    board = new int*[sizeY];
+
+    for(int y = 0; y < sizeY; y++){
+
+        int* boardRow = new int[sizeX];
+
+        for(int x = 0; x < sizeX; x++){
+            boardRow[x] = G.board[y][x];
+        }
+
+        board[y] = boardRow;
+    }
+
+}
+
+//Print game board with ASCII charcters on console
 void gameBoard::print(){
 
 	

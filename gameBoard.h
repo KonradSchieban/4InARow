@@ -16,6 +16,9 @@ class gameBoard{
 		//Constructor
 		gameBoard();
 
+        //Copy Contructor
+        gameBoard(const gameBoard &G);
+
         //Destructor
         ~gameBoard();
 
