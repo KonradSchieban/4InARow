@@ -6,8 +6,8 @@ using namespace std;
 //Copy Constructor
 gameBoard::gameBoard(const gameBoard &G){
 
-    sizeX = G.getSizeX();
-    sizeY = G.getSizeY();
+    sizeX = G.sizeX;
+    sizeY = G.sizeY;
 
     board = new int*[sizeY];
 
@@ -84,5 +84,42 @@ void gameBoard::clear(){
             board[y][x] = 0;
         }
     }
+
+}
+
+vector<int> gameBoard::getAllHeights(){
+
+    //initialize array of points for each column
+    vector<int> heights(sizeX);
+
+    //iterate over all columns
+    for(int x = 0; x < sizeX; x++){
+
+        //is column allready full?
+        if(board[x][sizeY-1] != 0){
+            heights[x] = -1;
+        }
+
+        //get y value of possible move:
+        int y = -1;
+        for(int y0 = sizeY-1; y0 >= 0; y0--){
+
+            if(y0 == 0){
+                y = 0;
+                break;
+            }
+
+            if(board[y0-1][x] != 0){
+                y = y0;
+                break;
+            }
+        }
+
+        //move in this column has coordinate (x,y)
+        heights[x] = y;
+
+    }
+
+    return heights;
 
 }

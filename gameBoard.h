@@ -1,6 +1,8 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+#include <vector>
+
 class gameBoard{
 
 	private:
@@ -31,6 +33,10 @@ class gameBoard{
 
         //clears gameBoard: deletes all tokens from the board
         void clear();
+
+        //returns vector of possible token heights for all possible moves. The value of a full column is -1
+        std::vector<int> getAllHeights();
+
 
 };
 

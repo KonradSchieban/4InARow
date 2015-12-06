@@ -8,11 +8,9 @@ class computerPlayer : public player {
 
 	private:
 		
-		//template <typename T> int getMaxIndex(T* array, int size);
-		double weight(int x, int y, int sizeX, int sizeY);
-
         //returns the "score" for player with number playerNumber. Target function for MinMax algorithm
         int valueFunction(gameBoard* G, int playerNumber);
+
 
 	public:
 		computerPlayer(int playerNumber) : player(playerNumber){}
