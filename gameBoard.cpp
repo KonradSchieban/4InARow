@@ -123,3 +123,18 @@ vector<int> gameBoard::getAllHeights(){
     return heights;
 
 }
+
+
+bool gameBoard::allColumnsFull(){
+
+    //initialize return value
+    bool allFull = true;
+
+    for(int i = 0; i<sizeX; i++){
+        if(board[sizeY-1][i] == 0)
+            allFull = false;
+    }
+
+    return allFull;
+
+}

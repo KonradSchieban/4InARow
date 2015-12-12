@@ -41,27 +41,10 @@ int humanPlayer::move(gameBoard* G, int col){
 	if(this->checkWon(col, y0, G))
 		return 2;
     else{
-        if(allColumnsFull(G))
+        if(G->allColumnsFull())
             return 3;
         else
             return 1;
     }
-
-}
-
-bool allColumnsFull(gameBoard* G){
-
-    //initialize return value
-    bool allFull = true;
-
-    int sizeX = G->getSizeX();
-    int sizeY = G->getSizeY();
-
-    for(int i = 0; i<sizeX; i++){
-        if(G->board[sizeY-1][i] == 0)
-            allFull = false;
-    }
-
-    return allFull;
 
 }

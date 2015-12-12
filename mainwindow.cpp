@@ -142,6 +142,10 @@ void MainWindow::statusOutput(int winner)
         enabled = false;
         ui->startButton->setText("Play again?");
         ui->startButton->setEnabled(true);
+
+        //enable radio bttons again
+        ui->groupBox->setEnabled(true);
+        ui->groupBox_2->setEnabled(true);
     }
 
 }
@@ -232,6 +236,10 @@ void MainWindow::on_startButton_clicked()
 
     //update "next turn scene"
     updateNextTurnScene(P1->getQBrush());
+
+    //disable Radiobuttons
+    ui->groupBox->setEnabled(false);
+    ui->groupBox_2->setEnabled(false);
 
     //if Player 1 is computerPlayer, let him move
     if(dynamic_cast<computerPlayer*>(P1))

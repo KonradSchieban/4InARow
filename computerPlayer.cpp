@@ -5,7 +5,7 @@
 #include<vector>
 #include<algorithm>
 #include"util/utilities.h"
-
+#include<limits>
 using namespace std;
 
 int computerPlayer::move(gameBoard* G, int col){ 
@@ -46,12 +46,20 @@ int computerPlayer::move(gameBoard* G, int col){
                     oppValues[y] = valueFunction(GCopy,oppPlayerNumber) - valueFunction(GCopy,this->number);
                     GCopy->board[newHeights[y]][y] = 0;
 
+                }else{
+
+                    oppValues[y] = numeric_limits<int>::min();
+
                 }
 
             }
 
             maxOppValues[x] = getMax(oppValues,sizeX);
             GCopy->board[heights[x]][x] = 0;
+
+        }else{
+
+            maxOppValues[x] = numeric_limits<int>::max();
 
         }
 
@@ -68,10 +76,15 @@ int computerPlayer::move(gameBoard* G, int col){
     //paint stone on scene
     scene->addEllipse(bestCol*graphicsWidth/sizeX,graphicsHeight-(height+1)*graphicsHeight/sizeY,graphicsWidth/sizeX,graphicsHeight/sizeY,*blackPen,*brush);
 
-	if(this->checkWon(bestCol, height, G))
-		return 2;
-	else
-		return 1;
+
+    if(this->checkWon(bestCol, height, G))
+        return 2;
+    else{
+        if(G->allColumnsFull())
+            return 3;
+        else
+            return 1;
+    }
 
 }
 

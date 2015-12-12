@@ -37,6 +37,8 @@ class gameBoard{
         //returns vector of possible token heights for all possible moves. The value of a full column is -1
         std::vector<int> getAllHeights();
 
+        //returns true if all columns are full, false otherwise
+        bool allColumnsFull();
 
 };
 
